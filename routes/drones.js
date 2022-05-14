@@ -12,7 +12,11 @@ router.get("/", (req, res, next) => {
       res.render("drones/list", { droneInfos });
     })
     .catch((error) => {
+      /* On error catching, and since we're using the Ironlauncher generator, and it is prepared to deal with errors,
+      instead of console logging the error, you could do next(error), which means that, everytime an error occurs it
+      will keep searching for a predefined way of dealing with it: in this case, line 33 of app.js defines it */
       console.log(error);
+      next(error);
     });
 });
 
@@ -31,6 +35,7 @@ router.post("/create", (req, res, next) => {
     })
     .catch((error) => {
       console.log("Something went wrong");
+      next(error);
     });
 });
 
@@ -44,6 +49,7 @@ router.get("/:id/edit", (req, res, next) => {
     })
     .catch((error) => {
       console.log("Error: ", error);
+      next(error);
     });
 });
 
@@ -58,6 +64,7 @@ router.post("/:id/edit", (req, res, next) => {
     })
     .catch((error) => {
       console.log("Error: ", error);
+      next(error);
     });
 });
 
@@ -71,7 +78,10 @@ router.post("/:id/delete", (req, res, next) => {
     })
     .catch((error) => {
       console.log("Can't delete drone");
+      next(error);
     });
 });
 
 module.exports = router;
+
+/* Very good job defining your routes. The code is clean and logic */
