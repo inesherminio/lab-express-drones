@@ -28,8 +28,10 @@ app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 const index = require('./routes/index');
 app.use('/', index);
 
+/* Bellow is the place where we define a prefix for the routes that exist in the ./routes/drones file. This will
+help us not to repeat /drones in every route in there */
 const droneRoutes = require('./routes/drones')
-app.use('/', droneRoutes)
+app.use('/drones', droneRoutes)
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);

@@ -1,18 +1,22 @@
+{{!-- We want to display the information that is already defined for the drone, so that the user know how to edit it.
+You passed it on the route, but are not using it here to display the information. On input, use the value property with the value that come from the DB --}}
+
 <h2>Update the drone</h2>
 <form action="/drones/{{_id}}/edit" method="post">
   <div class="mb-3">
     <label for="name" class="form-label">Name</label>
-    <input required maxlength="250" type="text" class="form-control" id="name" name="name">
+    <input required maxlength="250" type="text" class="form-control" id="name" name="name" value={{name}}>
   </div>
   <div class="mb-3">
     <label for="propellers" class="form-label">Propellers</label>
-    <input type="number" class="form-control" id="propellers" name="propellers">
+    <input type="number" class="form-control" id="propellers" name="propellers" value={{propellers}}>
   </div>
 
   <div class="mb-3">
     <label for="maxSpeed" class="form-label">Max Speed</label>
-    <input type="number" class="form-control" id="maxSpeed" name="maxSpeed">
+    <input type="number" class="form-control" id="maxSpeed" name="maxSpeed" value={{maxSpeed}}>
   </div>
   <button type="submit" class="btn btn-primary">Edit drone</button>
-  <a href="/" class="btn btn-dark">Go back</a>
+  {{!-- The go back button should go back, and not to the index --}}
+  <a href="/drones" class="btn btn-dark">Go back</a>
 </form>

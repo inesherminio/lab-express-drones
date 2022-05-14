@@ -1,8 +1,19 @@
 <h2>Available drones</h2>
 <div class="row">
-    {{#each drones}}
+  {{#each drones}}
     <h3>name: {{this.name}}</h3>
     <p>propellers: {{this.propellers}}</p>
     <p>maxSpeed: {{this.maxSpeed}}</p>
-    {{/each}}
+    {{! The edit only requires a anchor tag with a href to redirect to the edit route, but can be done like the delete, with GET instead of POST }}
+    <button><a href="/drones/{{this._id}}/edit">Edit</a></button>
+    {{! We need a form with method POST and action the route to delete an item, with a button inside to actually delete the item }}
+    <form action="/drones/{{this._id}}/delete" method="post">
+      <button>Delete</button>
+    </form>
+  {{/each}}
 </div>
+
+{{! You have not placed together with each drone a button to edit and another to delete.
+It is important, beacuse your edit and delete routes require the id of the drone as a param (/drones/:id),
+and the user does not know the id of the drones (only mongoDB knows because its a very big number).
+That's why we create the buttons that redirect the user for those views. }}
